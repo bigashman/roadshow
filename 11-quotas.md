@@ -102,7 +102,7 @@ Go the OpenShift web console and click on the *Settings* tab on the left
 sidebar. You should be able to see the limits in the project and also the
 current usage for each resource type.
 
-![ResourceQuota](http://training.runcloudrun.com/images/roadshow/quota-1.png)
+![ResourceQuota](images/roadshow/quota-1.png)
 
 Notice the orange warning icon near *resourcequotas*. The warning means you have
 reached the limit of number of allowed *ResourceQuota* in this project. You are
@@ -118,17 +118,17 @@ more pods for the JBoss EAP application:
 OpenShift starts creating new pods and after a short while 4 pods will be created
 however the number of pods never reaches to 5.
 
-![ResourceQuota](http://training.runcloudrun.com/images/roadshow/quota-2.png)
+![ResourceQuota](images/roadshow/quota-2.png)
 
 Go to project *Settings* and check out the resource limits. You should see a warning
 triangle near Pods stating you have reached the max limit of 5 Pods in your project.
 
-![ResourceQuota](http://training.runcloudrun.com/images/roadshow/quota-3.png)
+![ResourceQuota](images/roadshow/quota-3.png)
 
 Check out *Browse* > *Events* in your project. You will see an event stating that
 platform has failed to create new pods due to reaching a limit of 5 Pods.
 
-![ResourceQuota](http://training.runcloudrun.com/images/roadshow/quota-4.png)
+![ResourceQuota](images/roadshow/quota-4.png)
 
 
 **End of Lab 11**

@@ -14,7 +14,7 @@ build.
 On this screen you will see the option to copy the GitHub webhook URL as shown
 in the following image:
 
-![Webhook](http://training.runcloudrun.com/images/roadshow/webhook1.png)
+![Webhook](images/webhook1.png)
 
 Once you have the URL copied to your clipboard, navigate to the code repository
 that you forked on GitHub. Remember, it probably looks like:
@@ -24,17 +24,17 @@ that you forked on GitHub. Remember, it probably looks like:
 Click the Settings link on the right hand side of the screen as shown in the
 following image:
 
-![Webhook](http://training.runcloudrun.com/images/roadshow/webhook2.png)
+![Webhook](images/webhook2.png)
 
 Click the Webhooks & Services link:
 
-![Webhook](http://training.runcloudrun.com/images/roadshow/webhook3.png)
+![Webhook](images/webhook3.png)
 
 And finally, click on Add webhook.  On this screen, enter the URL you copied to
 your clipboard from the OpenShift web console in the Payload URL box and ensure
 that you disable SSL verification and save your changes:
 
-![Webhook](http://training.runcloudrun.com/images/roadshow/webhook4.png)
+![Webhook](images/webhook4.png)
 
 Boom!  From now on, every time you commit new source code to your GitHub
 repository, a new build and deploy will occur inside of OpenShift.  Let's try
@@ -46,7 +46,7 @@ click on the *index.html* file.
 Once you have the file on the screen, click the edit button in the top right
 hand corner as shown here:
 
-![Webhook](http://training.runcloudrun.com/images/roadshow/webhook5.png)
+![Webhook](images/webhook5.png)
 
 Change the following line (line number 34):
 
@@ -76,7 +76,7 @@ You should see that a new build is running:
 Once the build and deploy has finished, verify your new Docker image was
 automatically deployed by viewing the application in your browser:
 
-![Webhook](http://training.runcloudrun.com/images/roadshow/webhook6.png)
+![Webhook](images/webhook6.png)
 
 Winning!
 

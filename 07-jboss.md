@@ -86,7 +86,7 @@ can choose from, but you will want to select the one titled
 `jboss-eap64-openshift:1.1`. As you might guess, this is going to use an S2I
 builder image that contains JBoss EAP 6.4.
 
-![Runtimes](http://training.runcloudrun.com/images/roadshow/runtimes.png)
+![Runtimes](images/runtimes.png)
 
 After you click *"Add to Project"*, on the next screen you will need to enter a
 name and a Git repository URL. For the name, enter `openshift3mlbparks`, and for
@@ -160,7 +160,7 @@ In the above example, the URL is:
 
 Verify your application is working by viewing the URL in a web browser.  You should see the following:
 
-![MLBParks](http://training.runcloudrun.com/images/roadshow/mlbparks1.png)
+![MLBParks](images/mlbparks1.png)
 
 
 Wait a second!  Why are the baseball stadiums not showing up?  Well, that is

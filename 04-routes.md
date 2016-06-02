@@ -39,10 +39,10 @@ Verify the *Route* was created with the following command:
 
 You can also verify the *Route* by looking at the project in the OpenShift web console:
 
-![Route](http://training.runcloudrun.com/images/roadshow/route.png)
+![Route](images/route.png)
 
 Pretty nifty, huh?  This application is now available at the above URL:
 
-![Route](http://training.runcloudrun.com/images/roadshow/route2.png)
+![Route](images/route2.png)
 
 **End of Lab 4**

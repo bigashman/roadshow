@@ -117,7 +117,7 @@ existing Docker image that is already cached on the node.
 
 Verify that all three Pods are running using the web console:
 
-![Scaling](http://training.runcloudrun.com/images/roadshow/scaling.png)
+![Scaling](images/scaling.png)
 
 ###** Application "Self Healing" **
 Because OpenShift's *RCs* are constantly monitoring to see that the desired number

@@ -1,4 +1,6 @@
-#**Contents**#
+![Presentations](presentations/morning_overview.png)
+
+#**Lab Contents**#
 
 **[Lab Environment Overview](00-environment.md.html)**
 
@@ -13,3 +15,13 @@
 9. **[Using Source 2 Image for Code Changes](09-codechanges.md.html)**
 10. **[Using Application Templates](10-templates.md.html)**
 11. **[Limiting Project Resources](11-quotas.md.html)**
+
+#**Presentation Decks**#
+
+[Morning Overview](presentations/morning_overview.pdf)
+
+[Tech Deep Dive](presentations/tech_deep_dive.pdf)
+
+[Customer Success Stories](presentations/customer_success.pdf)
+
+[Red Hat Mobile on OpenShift](presentations/rh_mobile_openshift.pdf)e
