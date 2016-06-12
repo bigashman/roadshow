@@ -410,10 +410,10 @@ var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':re
   } else {
   	newNode.className = 'navbar navbar-fixed-top';
   }
-  
+
   if (!navbarEl && titleEl) {
   	if(isOpenshift) {
-      newNode.innerHTML = '<div class="navbar-header"><a href="/roadshow/" class="navbar-brand"></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-right"><li class="hidden-xs hidden-sm"><a href="https://docs.openshift.com/" class="nav-sign-up" target="_blank">Documentation</a></li></ul></div>';
+      newNode.innerHTML = '<div class="navbar-header"><a href="/" class="navbar-brand"></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-right"><li class="hidden-xs hidden-sm"><a href="https://docs.openshift.org/" class="nav-sign-up" target="_blank">Documentation</a></li></ul></div>';
   	} else {
       newNode.innerHTML = '<div class="navbar-inner"> <div class="container"> <div id="headline" class="brand"> </div> </div> </div>';
     }
@@ -453,4 +453,3 @@ var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':re
   document.body.style.display = '';
 
 })(window, document);
-
