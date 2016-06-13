@@ -42,48 +42,54 @@ of saying that we are going to deploy a map of baseball stadiums.
 
 #####** Create Project **
 
-The first thing you need to do is create a new project called `userXX-mlbparks`:
+The first thing you need to do is create a new project called `mlbparks`:
 
-**Note:** Remember to replace userXX-mlbparks with your correct user number.
+    $ oc new-project mlbparks
+    You should see the following output:
 
-    $ oc new-project userXX-mlbparks
+    Now using project "mlbparks-2" on server "https://10.2.2.2:8443".
 
-You should see the following output:
+    You can add applications to this project with the 'new-app' command. For example, try:
 
-	Now using project "mlbparks" on server "https://openshift-master.CITYNAME.openshift3roadshow.com:8443".
+      $ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-hello-world.git
 
-#####** Fork application code on GitHub **
+    to build a new hello-world application in Ruby.
 
-OpenShift can work with Git repositories on GitHub. You can even register
+
+#####** Using application code on embedded GitLab **
+
+OpenShift can work with Git repositories on GitHub, GitLab,... You can even register
 webhooks to initiate OpenShift builds triggered by any update to the application
 code on GitHub.
 
-The repository that we are going to fork is located at the following URL:
+The repository that we are going to use is already cloned in the internal GitLab repository
+and located at the following URL:
 
-[https://github.com/gshipley/openshift3mlbparks.git](https://github.com/gshipley/openshift3mlbparks.git "https://github.com/gshipley/openshift3mlbparks.git")
+[http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks.git](http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks.git "http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks.git")
 
-Go ahead and fork the `mlbparks` repository into your own GitHub account. Later
-in the lab, we want you to make a code change and then rebuild your application.
+You can log in to the embedded GitLab server using any of the 2 accounts available:
+
+- admin/admin123
+- dev/devdevdev
+
+Later in the lab, we want you to make a code change and then rebuild your application.
 If you are familiar with Java EE applications, you will notice that there is
 nothing special about our application - it is a standard, plain-old JEE
 application.
 
-**Note:** If you are not familiar with how to fork applications on GitHub, or if
-you don't have a GitHub account, please raise your hand and let your instructor
-know.  They can walk you through the process.
 
 #####** Combine the code with the Docker image on OpenShift **
 
 While the `new-app` command makes it very easy to get OpenShift to build code
-from a GitHub repository into a Docker image, we can also use the web console to
+from a GitHub/GitLab repository into a Docker image, we can also use the web console to
 do the same thing -- it's not all command line and green screen where we're
-going! Now that you have your own GitHub repository let's use it with
+going! Since for this lab you have your own GitLab repository let's use it with
 OpenShift's JBoss EAP S2I image.
 
-In the OpenShift web console, find your `userXX-mlbparks` project, and then
+In the OpenShift web console, find your `mlbparks` project, and then
 click the *"Add to Project"* button. You will see a number of runtimes that you
 can choose from, but you will want to select the one titled
-`jboss-eap64-openshift:1.1`. As you might guess, this is going to use an S2I
+`jboss-eap64-openshift:1.3`. As you might guess, this is going to use an S2I
 builder image that contains JBoss EAP 6.4.
 
 ![Runtimes](images/runtimes.png)
@@ -92,16 +98,19 @@ After you click *"Add to Project"*, on the next screen you will need to enter a
 name and a Git repository URL. For the name, enter `openshift3mlbparks`, and for
 the Git repository URL, enter:
 
-	https://github.com/YOURUSER/openshift3mlbparks.git
-
-**Note:** Ensure that you use your repository URL if you want to see S2I and
-webhooks in action later.
-
-**Note:** Make sure that you change `YOURUSER` to whatever your GitHub ID is
-(for example, joecoder22).
+	http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks.git
 
 **Note:** All of these runtimes shown are made available via *Templates*, which
 will be discussed in a later lab.
+
+![Runtimes](images/new_mlbparks_1.png)
+
+**NOTE:** To speed build process, a Sonatype Nexus in included in the VM that will cache
+your dependencies as you pull them down. To use it, you need to click on *Show advanced routing, build, and
+deployment options*, scroll down to *Build Configuration*, add an environment variable named *MAVEN_MIRROR_URL*
+with value *http://nexus.ci.svc.cluster.local:8081/content/groups/public*
+
+![Runtimes](images/new_mlbparks_2.png)
 
 You can then hit the button labeled *"Create"*. Then click *Continue to
 overview*. You will see this in the web console:
@@ -125,7 +134,7 @@ You'll see output like:
 
 You can also view the build logs with the following command:
 
-	$ oc build-logs openshift3mlbparks-1
+	$ oc logs -f builds/openshift3mlbparks-1
 
 After the build has completed and successfully:
 
@@ -152,11 +161,11 @@ URL in the web console, or via the command line:
 Where you should see something like the following:
 
     NAME                 HOST/PORT                                                                    PATH      SERVICE              LABELS                   INSECURE POLICY   TLS TERMINATION
-    openshift3mlbparks   openshift3mlbparks-userXX-mlbparks.cloudapps.CITYNAME.openshift3roadshow.com           openshift3mlbparks   app=openshift3mlbparks
+    openshift3mlbparks   openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io           openshift3mlbparks   app=openshift3mlbparks
 
 In the above example, the URL is:
 
-	openshift3mlbparks-userXX-mlbparks.cloudapps.CITYNAME.openshift3roadshow.com
+	openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io
 
 Verify your application is working by viewing the URL in a web browser.  You should see the following:
 
