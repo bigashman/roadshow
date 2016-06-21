@@ -24,15 +24,12 @@ Pod, and thus builds are subject to quotas, limits, resource scheduling, and
 other aspects of OpenShift.
 
 A full discussion of S2I is beyond the scope of this class, but you can find
-more information abuot it either in the [OpenShift S2I
-documentation](https://docs.openshift.com/enterprise/3.1/creating_images/s2i.html#overview)
+more information about it either in the [OpenShift S2I
+documentation](https://docs.openshift.org/latest/creating_images/s2i.html)
 or on GitHub (following the link above). The only key concept you need to
 remember about S2I is that it's magic.
 
-For a current list of supported runtimes, you can check out the [OpenShift
-Technologies](https://enterprise.openshift.com/features/#technologies) page.
-
-####**Exercise 4: Creating a JBoss EAP application**
+####**Exercise 4: Creating a WildFly application**
 
 The sample application that we will be deploying as part of this exercise is
 called `mlbparks`.  This application is a Java EE-based application that
@@ -44,23 +41,22 @@ of saying that we are going to deploy a map of baseball stadiums.
 
 The first thing you need to do is create a new project called `mlbparks`:
 
-    $ oc new-project mlbparks
-    You should see the following output:
+````
+$ oc new-project mlbparks
+Now using project "mlbparks" on server "https://10.2.2.2:8443".
 
-    Now using project "mlbparks-2" on server "https://10.2.2.2:8443".
+You can add applications to this project with the 'new-app' command. For example, try:
 
-    You can add applications to this project with the 'new-app' command. For example, try:
+    $ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-hello-world.git
 
-      $ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-hello-world.git
-
-    to build a new hello-world application in Ruby.
-
+to build a new hello-world application in Ruby.
+````
 
 #####** Using application code on embedded GitLab **
 
 OpenShift can work with Git repositories on GitHub, GitLab,... You can even register
 webhooks to initiate OpenShift builds triggered by any update to the application
-code on GitHub.
+code on your Git hosting solution.
 
 The repository that we are going to use is already cloned in the internal GitLab repository
 and located at the following URL:
@@ -84,13 +80,13 @@ While the `new-app` command makes it very easy to get OpenShift to build code
 from a GitHub/GitLab repository into a Docker image, we can also use the web console to
 do the same thing -- it's not all command line and green screen where we're
 going! Since for this lab you have your own GitLab repository let's use it with
-OpenShift's JBoss EAP S2I image.
+OpenShift's WildFly S2I image.
 
 In the OpenShift web console, find your `mlbparks` project, and then
 click the *"Add to Project"* button. You will see a number of runtimes that you
 can choose from, but you will want to select the one titled
-`jboss-eap64-openshift:1.3`. As you might guess, this is going to use an S2I
-builder image that contains JBoss EAP 6.4.
+`wildfly:latest`. As you might guess, this is going to use an S2I
+builder image that contains latest WildFly (currently version 10.0).
 
 ![Runtimes](images/runtimes.png)
 
@@ -125,16 +121,21 @@ the application. You can see all of this happening in real time!
 
 From the command line, you can also see the *Builds*:
 
+````
     $ oc get builds
-
+````
 You'll see output like:
 
+````
     NAME                   TYPE      FROM         STATUS     STARTED              DURATION
-    openshift3mlbparks-1   Source    Git@master   Running    3 minutes ago        1m2s
+    openshift3mlbparks-1   Source    Git@master  Running    3 minutes ago        1m2s
+````
 
 You can also view the build logs with the following command:
 
+````
 	$ oc logs -f builds/openshift3mlbparks-1
+````
 
 After the build has completed and successfully:
 
@@ -142,30 +143,37 @@ After the build has completed and successfully:
 * The *DeploymentConfiguration* (DC) will detect that the image has changed, and this
   will cause a new deployment to happen.
 * A *ReplicationController* (RC) will be spawned for this new deployment.
-* The RC will detect no *Pods* are running and will cause one to be deployed, as
-    our default replica count is just 1.
+* The RC will detect no *Pods* are running and will cause one to be deployed, as our default replica count is just 1.
 
 In the end, when issuing the `oc get pods` command, you will see that the build Pod
 has finished (exited) and that an application *Pod* is in a ready and running state:
 
+````
     NAME                         READY     STATUS      RESTARTS   AGE
     openshift3mlbparks-1-build   0/1       Completed   0          4m
     openshift3mlbparks-1-7e3ij   1/1       Running     0          2m
+````
 
 If you look again at the web console, you will notice that, when you create the
 application this way, OpenShift also creates a *Route* for you. You can see the
 URL in the web console, or via the command line:
 
+````
 	$ oc get routes
+````
 
 Where you should see something like the following:
 
+````
     NAME                 HOST/PORT                                                                    PATH      SERVICE              LABELS                   INSECURE POLICY   TLS TERMINATION
     openshift3mlbparks   openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io           openshift3mlbparks   app=openshift3mlbparks
+````
 
 In the above example, the URL is:
 
+````
 	openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io
+````
 
 Verify your application is working by viewing the URL in a web browser.  You should see the following:
 
@@ -175,6 +183,6 @@ Verify your application is working by viewing the URL in a web browser.  You sho
 Wait a second!  Why are the baseball stadiums not showing up?  Well, that is
 because we haven't actually added a database to the application yet.  We will do
 that in the next lab. Congratulations on deploying your first application
-using S2I on the OpenShift 3 Platform!
+using S2I on the OpenShift Origin Platform!
 
 **End of Lab 7**

@@ -14,34 +14,47 @@ OpenShift allows establishing remote shell sessions to a container without the n
 to run an SSH service inside each container. In order to SSH into a container, you
 can use the *oc rsh* command. First get the list of available pods:
 
-    $ oc get pods
+````
+$ oc get pods
+````
 
 You should an output similar to the following:
 
-    NAME                READY     STATUS    RESTARTS   AGE
-    guestbook-1-oc7ey   1/1       Running   0          12m
+````
+NAME                READY     STATUS    RESTARTS   AGE
+guestbook-1-e83hb   1/1       Running   0          44m
+````
 
 Now you can establish a remote shell session into the pod by using the pod name:
 
-  	$ oc rsh guestbook-1-oc7ey /bib/sh
+````
+$ oc rsh guestbook-1-oc7ey
+````
 
 You would see the following output:
-    [demo@openshift ~]$ oc rsh guestbook-1-oc7ey /bin/sh
 
-    BusyBox v1.21.1 (Ubuntu 1:1.21.0-1ubuntu1) built-in shell (ash)
-    Enter 'help' for a list of built-in commands.
+````
+$oc rsh guestbook-1-e83hb
 
-The default shell used by *oc rsh* is *bash* however the deployed container does
-not have *bash* installed and uses *A Shell*. Therefore the shell command is specified
-after the pod name in the issued command.
+
+BusyBox v1.21.1 (Ubuntu 1:1.21.0-1ubuntu1) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+/app #
+````
+
+The default shell used by *oc rsh* is */bin/sh*. If the deployed container does
+not have *sh* installed and uses another shell, (e.g. *A Shell*) the shell command
+can be specified after the pod name in the issued command.
 
 Run the following command to list the static files for the guestbook application
 within the container:
 
+````
     $ ls public/
 
     index.html  script.js   style.css
-
+````
 
 ####**Exercise: Execute a Command in a Container**
 
@@ -51,16 +64,20 @@ already running container using the *oc exec* command.
 In order the get the list of files in the *public* directory of the container,
 run the following:
 
-    $ oc exec guestbook-1-oc7ey ls public
+````
+    $ oc exec guestbook-1-e83hb ls public
 
     index.html
     script.js
     style.css
+````
 
 You can also specify the shell commands to run directly with the *oc rsh* command:
 
-    $ oc rsh guestbook-1-oc7ey ls public
+````
+    $ oc rsh guestbook-1-e83hb ls public
 
     index.html  script.js   style.css
+````
 
 **End of Lab 5**

@@ -12,7 +12,7 @@ how OpenShift "self heals".
 
 A *DeploymentConfiguration* (DC) defines how something in OpenShift should be
 deployed. From the [deployments
-documentation](https://docs.openshift.com/enterprise/3.1/architecture/core_concepts/deployments.html#deployments-and-deployment-configurations):
+documentation](https://docs.openshift.org/latest/architecture/core_concepts/deployments.html#deployments-and-deployment-configurations):
 
     Building on replication controllers, OpenShift adds expanded support for the
     software development and deployment lifecycle with the concept of deployments.
@@ -30,86 +30,114 @@ or a *Service*, and others, so feel free to ask us about them after the labs.
 
 ###** Exercise 3: Scaling up **
 Now that we know what a *ReplicatonController* and *DeploymentConfig* are, we can
-start to explore scaling in OpenShift 3. Take a look at the
-*ReplicationController* (RC) that was created for you when you told OpenShift to
+start to explore scaling in OpenShift Origin. Take a look at the
+*DeploymentConfig* (DC) that was created for you when you told OpenShift to
 stand up the `guestbook` image:
 
-    $ oc get rc
+````
+$ oc get dc
 
-    CONTROLLER    CONTAINER(S)   IMAGE(S)                                                                                       SELECTOR                                                          REPLICAS   AGE
-    guestbook-1   guestbook      kubernetes/guestbook@sha256:a49fe18bb57c8eee16e2002987e041f5ae9b5b70ae7b3d49eb60e5c26b9c6bd0   app=guestbook,deployment=guestbook-1,deploymentconfig=guestbook   1          13m
+NAME        REVISION   REPLICAS   TRIGGERED BY
+guestbook   1          1          config,image(guestbook:latest)
+````
 
-Again, to get more details (once you know the name of RC), you can use the
-following command:
+To get more details, we can look into the ReplicationController (*RC*).
 
-    $ oc get rc guestbook-1 -o json
+Take a look at the *ReplicationController* (RC) that was created for you when you told OpenShift to
+stand up the `guestbook` image:
+
+````
+$ oc get rc
+
+NAME          DESIRED   CURRENT   AGE
+guestbook-1   1         1         59m
+````
+
+Once you know the name of RC, you can use the following command:
+
+````
+$ oc get rc guestbook-1 -o json
+````
 
 For example, if you just want to see how many replicas are defined for the
 `guestbook` image, you can enter in the following command:
 
-    $ oc get rc guestbook-1 -o json | grep -B1 -E "replicas" | grep -v Docker
+````
+$ oc get rc guestbook-1 -o json | grep -B1 -E "replicas" | grep -v "deployment"
+````
 
 **Note:** The above command uses the *grep* utility which may not be available on your operating system.  
 
 The output of the above command should be:
 
-    "openshift.io/deployment.phase": "Complete",
+````
     --
         "spec": {
             "replicas": 1,
     --
         "status": {
             "replicas": 1,
+````
 
 This lets us know that, right now, we expect one *Pod* to be deployed (`spec`), and we have
 one *Pod* actually deployed (`status`). By changing the `spec`, we can tell OpenShift
 that we desire a different number of *Pods*.
 
-Ultimately, OpenShift 3's autoscaling capability will involve monitoring the
+Ultimately, OpenShift Origin's autoscaling capability will involve monitoring the
 status of an "application" and then manipulating the RCs accordingly.
 
 You can learn more about the tech-preview CPU-based [Horizontal Pod Autoscaler
-here](https://docs.openshift.com/enterprise/3.1/dev_guide/pod_autoscaling.html)
+here](https://docs.openshift.org/latest/dev_guide/pod_autoscaling.html)
 
 Let's scale our guestbook "application" up to 3 instances. We can do this with
 the `scale` command. You could also do this by clicking the "up" arrow next to
 the *Pod* in the OpenShift web console.
 
-	$ oc scale --replicas=3 rc guestbook-1
+````
+	$ oc scale --replicas=3 dc/guestbook
+````
 
 To verify that we changed the number of replicas by modifying the RC object,
 issue the following command:
 
-	$ oc get rc
+````
+$ oc get rc
 
-    CONTROLLER    CONTAINER(S)   IMAGE(S)                                                                                       SELECTOR                                                          REPLICAS   AGE
-    guestbook-1   guestbook      kubernetes/guestbook@sha256:a49fe18bb57c8eee16e2002987e041f5ae9b5b70ae7b3d49eb60e5c26b9c6bd0   app=guestbook,deployment=guestbook-1,deploymentconfig=guestbook   3          13m
+NAME        REVISION   REPLICAS   TRIGGERED BY
+guestbook   1          3          config,image(guestbook:latest)
+````
 
 You can see that we now have 3 replicas.  Let's verify that with the `oc get pods` command:
 
-	$ oc get pods
+````
+$ oc get pods
 
-        NAME                READY     REASON    RESTARTS   AGE
-        guestbook-1-a163w   1/1       Running   0          1m
-        guestbook-1-jvm79   1/1       Running   0          1m
-        guestbook-1-xaav1   1/1       Running   0          39m
+NAME                READY     STATUS    RESTARTS   AGE
+guestbook-1-afaxi   1/1       Running   0          1m
+guestbook-1-e83hb   1/1       Running   0          1h
+guestbook-1-vn9sx   1/1       Running   0          1m
+````
 
 And lastly, let's verify that the *Service* that we learned about in the previous lab accurately reflects three endpoints:
 
-	$ oc describe service guestbook
+````
+$ oc describe svc/guestbook
+````
 
 You will see something like the following output:
 
-    Name:		guestbook
-    Namespace:		user01-guestbook
-    Labels:		app=guestbook
-    Selector:		app=guestbook,deploymentconfig=guestbook
-    Type:		ClusterIP
-    IP:			172.30.83.194
-    Port:		3000-tcp	3000/TCP
-    Endpoints:		10.0.0.68:3000,10.1.0.93:3000,10.2.0.66:3000
-    Session Affinity:	None
-    No events.
+````
+Name:			guestbook
+Namespace:		guestbook
+Labels:			app=guestbook
+Selector:		app=guestbook,deploymentconfig=guestbook
+Type:			ClusterIP
+IP:			172.30.244.132
+Port:			3000-tcp	3000/TCP
+Endpoints:		172.17.0.13:3000,172.17.0.5:3000,172.17.0.6:3000
+Session Affinity:	None
+No events.
+````
 
 That's how simple it is to scale up *Pods* in a *Service*. Application scaling can
 happen extremely quickly because OpenShift is just launching new instances of an
@@ -128,11 +156,15 @@ Since we have three *Pods* running right now, let's see what happens if we
 "accidentally" kill one. Run the `oc get pods` command again, and choose a *Pod*
 name. Then, do the following:
 
-    oc delete pod guestbook-1-a163w
+````
+$ oc delete pod guestbook-1-afaxi
+````
 
 Then, as fast as you can, do the following:
 
-    oc get pods
+````
+$ oc get pods
+````
 
 Did you notice anything different? The names of the *Pods* are slightly changed.
 That's because OpenShift almost immediately detected that the current state (2
@@ -146,7 +178,7 @@ and then start another one, always ensuring that the desired number of replicas
 was in place.
 
 More information on liveness and readiness is available in the [Application
-Health](https://docs.openshift.com/enterprise/3.1/dev_guide/application_health.html)
+Health](https://docs.openshift.org/latest/dev_guide/application_health.html)
 section of the documentation.
 
 **End of Lab 6**

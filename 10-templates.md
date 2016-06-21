@@ -25,22 +25,27 @@ you to understand how to create, deploy, and wire resources together.  In order
 for the magic to happen, first create a new project and add the template to the
 project:
 
-	$ oc new-project userXX-template
-	$ oc create -f https://raw.githubusercontent.com/gshipley/openshift3mlbparks/master/mlbparks-template.json
+````
+	$ oc new-project mlbparks-template
+	$ oc create -f http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
+````
 
 Now we have access to the application template in our project.  As a side note, administrators have the capability to add templates to the general *openshift* project which will in turn provide an application template to any user on the system.
 
 Are you ready for the magic command?  Here it is:
 
+````
 	$ oc new-app mlbparks
+````
 
 You will see the following output:
 
+````
     --> Deploying template mlbparks for "mlbparks"
          With parameters:
           APPLICATION_NAME=mlbparks
           APPLICATION_DOMAIN=
-          SOURCE_REPOSITORY_URL=https://github.com/gshipley/openshift3mlbparks
+          SOURCE_REPOSITORY_URL=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks
           SOURCE_REPOSITORY_REF=master
           CONTEXT_DIR=
           HORNETQ_QUEUES=
@@ -65,6 +70,7 @@ You will see the following output:
     --> Success
         Build scheduled for "mlbparks" - use the logs command to track its progress.
         Run 'oc status' to view your app.
+````
 
 OpenShift will automatically start a build for you. When it is complete, visit
 your app. Does it work? Think about how this could be used in your environment.
@@ -76,6 +82,8 @@ them to develop new features, microservices, fix bugs, and more.
 As a final exercise, look at the template that was used to create the
 resources for our *mlbparks* application.
 
-    https://raw.githubusercontent.com/gshipley/openshift3mlbparks/master/mlbparks-template.json
+````
+    http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
+````
 
 **End of Lab 10**

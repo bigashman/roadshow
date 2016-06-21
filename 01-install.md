@@ -2,7 +2,7 @@
 
 ###**Command Line Interface**
 
-OpenShift 3 ships with a feature rich web console as well as command line tools
+OpenShift Origin ships with a feature rich web console as well as command line tools
 to provide users with a nice interface to work with applications deployed to the
 platform.  The OpenShift tools are a single executable written in the Go
 programming language and is available for the following operating systems:
@@ -14,14 +14,15 @@ programming language and is available for the following operating systems:
 ####**Downloading the tools**
 During this lab, we are going to download the client tool and add them to our
 operating system $PATH environment variables so the executable is accessible
-from any directory on the command line. 
+from any directory on the command line.
 
 The first thing we want to do is download the correct executable for your
 operating system as linked below:
 
-- [Microsoft Windows](http://repo.openshift3roadshow.com/clients/oc-windows.zip)
-- [Apple OS X](http://repo.openshift3roadshow.com/clients/oc-macosx.tar.gz)
-- [Linux](http://repo.openshift3roadshow.com/clients/oc-linux.tar.gz)
+- [Microsoft Windows](https://github.com/openshift/origin/releases/download/v1.2.0/openshift-origin-client-tools-v1.2.0-2e62fab-windows.zip)
+- [Apple OS X](https://github.com/openshift/origin/releases/download/v1.2.0/openshift-origin-client-tools-v1.2.0-2e62fab-mac.zip)
+- [Linux 64](https://github.com/openshift/origin/releases/download/v1.2.0/openshift-origin-client-tools-v1.2.0-2e62fab-linux-64bit.tar.gz)
+- [Linux 32](https://github.com/openshift/origin/releases/download/v1.2.0/openshift-origin-client-tools-v1.2.0-2e62fab-linux-32bit.tar.gz)
 
 
 Once the file has been downloaded, you will need to extract the contents as it
@@ -30,15 +31,21 @@ directories:
 
 **Windows:**
 
+````
 	C:\OpenShift
+````
 
 **OS X:**
 
+````
 	~/OpenShift
+````
 
 **Linux:**
 
+````
 	~/OpenShift
+````
 
 ####**Extracting the tools**
 Once you have the tools downloaded, you will need to extract the contents:
@@ -53,13 +60,17 @@ file using file explorer and select to extract the contents.
 Open up a terminal window and change to the directory where you downloaded the
 file.  Once you are in the directory, enter in the following command:
 
+````
 	$ tar zxvf oc-macosx.tar.gz
+````
 
 **Linux:**
 Open up a terminal window and change to the directory where you downloaded the
 file.  Once you are in the directory, enter in the following command:
 
+````
 	$ tar zxvf oc-linux.tar.gz
+````
 
 ####**Adding *oc* to your PATH**
 
@@ -85,23 +96,30 @@ Windows 10 - Follow the directions above.
 
 **OS X:**
 
+````
 	$ export PATH=$PATH:~/OpenShift
+````
 
 **Linux:**
-	
-	$ export PATH=$PATH:~/OpenShift
 
+````
+	$ export PATH=$PATH:~/OpenShift
+````
 
 ####**Verify**
 At this point, we should have the oc tool available for use.  Let's test this
 out by printing the version of the oc command:
 
+````
 	$ oc version
+````
 
 You should see the following (or something similar):
 
-    oc v3.1.1.6-33-g81eabcc
-    kubernetes v1.1.0-origin-1107-g4c8e6f4
+````
+	oc v1.2.0
+	kubernetes v1.2.0-36-g4a3f9c5
+````
 
 If you get an error message, you have not updated your path correctly.  If you
 need help, raise your hand and the instructor will assist.
