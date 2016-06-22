@@ -27,7 +27,7 @@ project:
 
 ````
 $ oc new-project mlbparks-template
-$ oc create -f http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
+$ oc create -f http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template-wildfly.json
 ````
 
 Now we have access to the application template in our project.  As a side note, administrators have the capability to add templates to the general *openshift* project which will in turn provide an application template to any user on the system.
@@ -35,40 +35,38 @@ Now we have access to the application template in our project.  As a side note, 
 Are you ready for the magic command?  Here it is:
 
 ````
-$ oc new-app mlbparks
+$ oc new-app mlbparks-wildfly --name=mlbparks -p GIT_URI=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks -p MAVEN_MIRROR_URL=http://nexus.ci.apps.10.2.2.2.xip.io/content/groups/public/
 ````
 
 You will see the following output:
 
 ````
---> Deploying template mlbparks for "mlbparks"
-    With parameters:
+--> Deploying template mlbparks-wildfly for "mlbparks-wildfly"
+     With parameters:
       APPLICATION_NAME=mlbparks
-      APPLICATION_DOMAIN=
-      SOURCE_REPOSITORY_URL=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks
-      SOURCE_REPOSITORY_REF=master
-      CONTEXT_DIR=
-      HORNETQ_QUEUES=
-      HORNETQ_TOPICS=
-      HORNETQ_CLUSTER_PASSWORD=BlflcWjX # generated
-      GITHUB_WEBHOOK_SECRET=FdhVeba3 # generated
-      GENERIC_WEBHOOK_SECRET=pbp4lDMM # generated
-      IMAGE_STREAM_NAMESPACE=openshift
-      DATABASE_SERVICE_NAME=mongodb
-      MONGODB_USER=user7TI # generated
-      MONGODB_PASSWORD=4IucG7FYvPeXWKqQ # generated
-      MONGODB_DATABASE=sampledb
-      MONGODB_ADMIN_PASSWORD=7DlSvtYyAscfL2fC # generated
+      APPLICATION_HOSTNAME=
+      GIT_URI=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks
+      GIT_REF=master
+      Maven mirror url=http://nexus.ci.apps.10.2.2.2.xip.io/content/groups/public/
+      MONGODB_DATABASE=root
+      MONGODB_NOPREALLOC=
+      MONGODB_SMALLFILES=
+      MONGODB_QUIET=
+      MONGODB_USER=userPX6 # generated
+      MONGODB_PASSWORD=AMCrIoEs # generated
+      MONGODB_ADMIN_PASSWORD=VkImyijw # generated
+      GITHUB_TRIGGER_SECRET=xb5Vreur # generated
+      GENERIC_TRIGGER_SECRET=J1mf583c # generated
 --> Creating resources with label app=mlbparks ...
-    Service "mlbparks" created
-    Route "mlbparks" created
-    ImageStream "mlbparks" created
-    BuildConfig "mlbparks" created
-    DeploymentConfig "mlbparks" created
-    Service "mongodb" created
-    DeploymentConfig "mongodb" created
+    buildconfig "mlbparks" created
+    imagestream "mlbparks" created
+    deploymentconfig "mlbparks-mongodb" created
+    deploymentconfig "mlbparks" created
+    route "mlbparks-http-route" created
+    service "mongodb" created
+    service "mlbparks-http" created
 --> Success
-    Build scheduled for "mlbparks" - use the logs command to track its progress.
+    Build scheduled, use 'oc logs -f bc/mlbparks' to track its progress.
     Run 'oc status' to view your app.
 ````
 
