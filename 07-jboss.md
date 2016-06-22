@@ -122,19 +122,19 @@ the application. You can see all of this happening in real time!
 From the command line, you can also see the *Builds*:
 
 ````
-    $ oc get builds
+$ oc get builds
 ````
 You'll see output like:
 
 ````
-    NAME                   TYPE      FROM         STATUS     STARTED              DURATION
-    openshift3mlbparks-1   Source    Git@master  Running    3 minutes ago        1m2s
+NAME                   TYPE      FROM         STATUS     STARTED              DURATION
+openshift3mlbparks-1   Source    Git@master  Running    3 minutes ago        1m2s
 ````
 
 You can also view the build logs with the following command:
 
 ````
-	$ oc logs -f builds/openshift3mlbparks-1
+$ oc logs -f builds/openshift3mlbparks-1
 ````
 
 After the build has completed and successfully:
@@ -149,9 +149,9 @@ In the end, when issuing the `oc get pods` command, you will see that the build 
 has finished (exited) and that an application *Pod* is in a ready and running state:
 
 ````
-    NAME                         READY     STATUS      RESTARTS   AGE
-    openshift3mlbparks-1-build   0/1       Completed   0          4m
-    openshift3mlbparks-1-7e3ij   1/1       Running     0          2m
+NAME                         READY     STATUS      RESTARTS   AGE
+openshift3mlbparks-1-build   0/1       Completed   0          4m
+openshift3mlbparks-1-7e3ij   1/1       Running     0          2m
 ````
 
 If you look again at the web console, you will notice that, when you create the
@@ -159,20 +159,20 @@ application this way, OpenShift also creates a *Route* for you. You can see the
 URL in the web console, or via the command line:
 
 ````
-	$ oc get routes
+$ oc get routes
 ````
 
 Where you should see something like the following:
 
 ````
-    NAME                 HOST/PORT                                                                    PATH      SERVICE              LABELS                   INSECURE POLICY   TLS TERMINATION
-    openshift3mlbparks   openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io           openshift3mlbparks   app=openshift3mlbparks
+NAME                 HOST/PORT                                           PATH      SERVICE              LABELS ...
+openshift3mlbparks   openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io              openshift3mlbparks   app=openshift3mlbparks
 ````
 
 In the above example, the URL is:
 
 ````
-	openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io
+http://openshift3mlbparks-mlbparks.apps.10.2.2.2.xip.io
 ````
 
 Verify your application is working by viewing the URL in a web browser.  You should see the following:
@@ -185,4 +185,4 @@ because we haven't actually added a database to the application yet.  We will do
 that in the next lab. Congratulations on deploying your first application
 using S2I on the OpenShift Origin Platform!
 
-**End of Lab 7**
+**[End of Lab 7](/)**

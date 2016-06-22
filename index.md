@@ -1,4 +1,4 @@
-![Presentations](presentations/morning_overview.png)
+![OpenShift Labs](cover/logo.png)
 
 #**Lab Contents**#
 

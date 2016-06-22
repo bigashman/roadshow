@@ -70,38 +70,38 @@ need to modify the *DeploymentConfiguration*.
 First, find the name of the DC:
 
 ````
-	$ oc get dc
+$ oc get dc
 ````
 
 Then, use the `oc env` command to set environment variables directly on the DC:
 
 ````
-	$ oc env dc openshift3mlbparks -e MONGODB_USER=mlbparks -e MONGODB_PASSWORD=mlbparks -e MONGODB_DATABASE=mlbparks
+$ oc env dc openshift3mlbparks -e MONGODB_USER=mlbparks -e MONGODB_PASSWORD=mlbparks -e MONGODB_DATABASE=mlbparks
 ````
 
 After you have modified the *DeploymentConfig* object, you can verify the environment variables have been added by viewing the JSON document of the configuration:
 
 ````
-	$ oc get dc openshift3mlbparks -o json
+$ oc get dc openshift3mlbparks -o json
 ````
 
 You should see the following section:
 
 ````
-	env": [
-		{
-			"name": "MONGODB_USER",
-			"value": "mlbparks"
-		},
-		{
-			"name": "MONGODB_PASSWORD",
-			"value": "mlbparks"
-		},
-		{
-			"name": "MONGODB_DATABASE",
-			"value": "mlbparks"
-		}
-	],
+env": [
+   {
+      "name": "MONGODB_USER",
+      "value": "mlbparks"
+   },
+   {
+      "name": "MONGODB_PASSWORD",
+      "value": "mlbparks"
+   },
+   {
+      "name": "MONGODB_DATABASE",
+      "value": "mlbparks"
+   }
+],
 ````
 
 ###** OpenShift Magic **
@@ -111,8 +111,8 @@ warrant updating the internal version number of the *DeploymentConfiguration*. Y
 can verify this by looking at the output of `oc get dc`:
 
 ````
-    ...
-    openshift3mlbparks  2 1   config,image(openshift3mlbparks:latest)
+NAME                REVISION   REPLICAS   TRIGGERED BY
+openshift3mlbparks  2          1          config,image(openshift3mlbparks:latest)
 ````
 
 Something that increments the version of a *DeploymentConfiguration*, by default,
@@ -180,13 +180,13 @@ ensure that you substitute them for the values above.
 Once you are connected to the database, run the following command to count the number of MLB teams added to the database:
 
 ````
-	> db.teams.count();
+> db.teams.count();
 ````
 
 You can also view the json documents with the following command:
 
 ````
-	> db.teams.find();
+> db.teams.find();
 ````
 
 ###**OpenShift's Web Console Terminal**
@@ -212,4 +212,4 @@ information.
 
 **Note:** You currently can't copy/paste into the terminal.
 
-**End of Lab 8**
+**[End of Lab 8](/)**

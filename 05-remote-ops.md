@@ -51,9 +51,9 @@ Run the following command to list the static files for the guestbook application
 within the container:
 
 ````
-    $ ls public/
+$ ls public/
 
-    index.html  script.js   style.css
+index.html  script.js   style.css
 ````
 
 ####**Exercise: Execute a Command in a Container**
@@ -65,19 +65,19 @@ In order the get the list of files in the *public* directory of the container,
 run the following:
 
 ````
-    $ oc exec guestbook-1-e83hb ls public
+$ oc exec guestbook-1-e83hb ls public
 
-    index.html
-    script.js
-    style.css
+index.html
+script.js
+style.css
 ````
 
 You can also specify the shell commands to run directly with the *oc rsh* command:
 
 ````
-    $ oc rsh guestbook-1-e83hb ls public
+$ oc rsh guestbook-1-e83hb ls public
 
-    index.html  script.js   style.css
+index.html  script.js   style.css
 ````
 
-**End of Lab 5**
+**[End of Lab 5](/)**

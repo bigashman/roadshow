@@ -26,8 +26,8 @@ for the magic to happen, first create a new project and add the template to the
 project:
 
 ````
-	$ oc new-project mlbparks-template
-	$ oc create -f http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
+$ oc new-project mlbparks-template
+$ oc create -f http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
 ````
 
 Now we have access to the application template in our project.  As a side note, administrators have the capability to add templates to the general *openshift* project which will in turn provide an application template to any user on the system.
@@ -35,41 +35,41 @@ Now we have access to the application template in our project.  As a side note, 
 Are you ready for the magic command?  Here it is:
 
 ````
-	$ oc new-app mlbparks
+$ oc new-app mlbparks
 ````
 
 You will see the following output:
 
 ````
-    --> Deploying template mlbparks for "mlbparks"
-         With parameters:
-          APPLICATION_NAME=mlbparks
-          APPLICATION_DOMAIN=
-          SOURCE_REPOSITORY_URL=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks
-          SOURCE_REPOSITORY_REF=master
-          CONTEXT_DIR=
-          HORNETQ_QUEUES=
-          HORNETQ_TOPICS=
-          HORNETQ_CLUSTER_PASSWORD=BlflcWjX # generated
-          GITHUB_WEBHOOK_SECRET=FdhVeba3 # generated
-          GENERIC_WEBHOOK_SECRET=pbp4lDMM # generated
-          IMAGE_STREAM_NAMESPACE=openshift
-          DATABASE_SERVICE_NAME=mongodb
-          MONGODB_USER=user7TI # generated
-          MONGODB_PASSWORD=4IucG7FYvPeXWKqQ # generated
-          MONGODB_DATABASE=sampledb
-          MONGODB_ADMIN_PASSWORD=7DlSvtYyAscfL2fC # generated
-    --> Creating resources with label app=mlbparks ...
-        Service "mlbparks" created
-        Route "mlbparks" created
-        ImageStream "mlbparks" created
-        BuildConfig "mlbparks" created
-        DeploymentConfig "mlbparks" created
-        Service "mongodb" created
-        DeploymentConfig "mongodb" created
-    --> Success
-        Build scheduled for "mlbparks" - use the logs command to track its progress.
-        Run 'oc status' to view your app.
+--> Deploying template mlbparks for "mlbparks"
+    With parameters:
+      APPLICATION_NAME=mlbparks
+      APPLICATION_DOMAIN=
+      SOURCE_REPOSITORY_URL=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks
+      SOURCE_REPOSITORY_REF=master
+      CONTEXT_DIR=
+      HORNETQ_QUEUES=
+      HORNETQ_TOPICS=
+      HORNETQ_CLUSTER_PASSWORD=BlflcWjX # generated
+      GITHUB_WEBHOOK_SECRET=FdhVeba3 # generated
+      GENERIC_WEBHOOK_SECRET=pbp4lDMM # generated
+      IMAGE_STREAM_NAMESPACE=openshift
+      DATABASE_SERVICE_NAME=mongodb
+      MONGODB_USER=user7TI # generated
+      MONGODB_PASSWORD=4IucG7FYvPeXWKqQ # generated
+      MONGODB_DATABASE=sampledb
+      MONGODB_ADMIN_PASSWORD=7DlSvtYyAscfL2fC # generated
+--> Creating resources with label app=mlbparks ...
+    Service "mlbparks" created
+    Route "mlbparks" created
+    ImageStream "mlbparks" created
+    BuildConfig "mlbparks" created
+    DeploymentConfig "mlbparks" created
+    Service "mongodb" created
+    DeploymentConfig "mongodb" created
+--> Success
+    Build scheduled for "mlbparks" - use the logs command to track its progress.
+    Run 'oc status' to view your app.
 ````
 
 OpenShift will automatically start a build for you. When it is complete, visit
@@ -83,7 +83,7 @@ As a final exercise, look at the template that was used to create the
 resources for our *mlbparks* application.
 
 ````
-    http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
+http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks/raw/master/mlbparks-template.json
 ````
 
-**End of Lab 10**
+**[End of Lab 10](/)**

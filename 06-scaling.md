@@ -71,12 +71,12 @@ $ oc get rc guestbook-1 -o json | grep -B1 -E "replicas" | grep -v "deployment"
 The output of the above command should be:
 
 ````
-    --
-        "spec": {
-            "replicas": 1,
-    --
-        "status": {
-            "replicas": 1,
+--
+  "spec": {
+     "replicas": 1,
+--
+  "status": {
+     "replicas": 1,
 ````
 
 This lets us know that, right now, we expect one *Pod* to be deployed (`spec`), and we have
@@ -94,7 +94,7 @@ the `scale` command. You could also do this by clicking the "up" arrow next to
 the *Pod* in the OpenShift web console.
 
 ````
-	$ oc scale --replicas=3 dc/guestbook
+$ oc scale --replicas=3 dc/guestbook
 ````
 
 To verify that we changed the number of replicas by modifying the RC object,
@@ -181,4 +181,4 @@ More information on liveness and readiness is available in the [Application
 Health](https://docs.openshift.org/latest/dev_guide/application_health.html)
 section of the documentation.
 
-**End of Lab 6**
+**[End of Lab 6](/)**

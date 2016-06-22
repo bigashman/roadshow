@@ -71,7 +71,7 @@ triggered in OpenShift. Look at the *Builds* page in the web console, or run the
 following command to verify:
 
 ````
-	$ oc get builds
+$ oc get builds
 ````
 
 You should see that a new build is running:
@@ -101,7 +101,7 @@ In order to perform a rollback, you need to know the name of the *Deployment Con
 which has deployed the application:
 
 ````
-    $ oc get dc
+$ oc get dc
 ````
 
 The output will be similar to the following:
@@ -115,11 +115,11 @@ openshift3mlbparks   3          1          config,image(openshift3mlbparks:lates
 Now run the following command to rollback the latest code change:
 
 ````
-    $ oc rollback openshift3mlbparks
+$ oc rollback openshift3mlbparks
 
-    #3 rolled back to openshift3mlbparks-2
-    Warning: the following images triggers were disabled: openshift3mlbparks:latest
-      You can re-enable them with: oc deploy openshift3mlbparks --enable-triggers -n mlbparks
+#3 rolled back to openshift3mlbparks-2
+Warning: the following images triggers were disabled: openshift3mlbparks:latest
+   You can re-enable them with: oc deploy openshift3mlbparks --enable-triggers -n mlbparks
 ````
 
 Once the deploy is complete, verify that the page header is reverted to the
@@ -130,7 +130,7 @@ to prevent unwanted deployments soon after the rollback is complete. To re-enabl
 the automatic deployments run this:
 
 ````
-    $ oc deploy openshift3mlbparks --enable-triggers
+$ oc deploy openshift3mlbparks --enable-triggers
 ````
 
-**End of Lab 9**
+**[End of Lab 9](/)**
