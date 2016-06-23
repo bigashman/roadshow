@@ -5,7 +5,7 @@ usually achieved with a database or other data storage. In this next lab we are
 going to add MongoDB to our `mlbparks` project and then rewire our
 application to talk to the database using environment variables.
 
-We are going to use the MongoDB image that is included with OpenShift Origin.
+We are going to use the MongoDB image that is included with OpenShift.
 
 By default, this will use *EmptyDir* for data storage, which means if the *Pod*
 disappears the data does as well. In a real application you would use

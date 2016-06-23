@@ -30,7 +30,7 @@ or a *Service*, and others, so feel free to ask us about them after the labs.
 
 ###** Exercise 3: Scaling up **
 Now that we know what a *ReplicatonController* and *DeploymentConfig* are, we can
-start to explore scaling in OpenShift Origin. Take a look at the
+start to explore scaling in OpenShift. Take a look at the
 *DeploymentConfig* (DC) that was created for you when you told OpenShift to
 stand up the `guestbook` image:
 
@@ -83,7 +83,7 @@ This lets us know that, right now, we expect one *Pod* to be deployed (`spec`), 
 one *Pod* actually deployed (`status`). By changing the `spec`, we can tell OpenShift
 that we desire a different number of *Pods*.
 
-Ultimately, OpenShift Origin's autoscaling capability will involve monitoring the
+Ultimately, OpenShift's autoscaling capability will involve monitoring the
 status of an "application" and then manipulating the RCs accordingly.
 
 You can learn more about the tech-preview CPU-based [Horizontal Pod Autoscaler

@@ -176,17 +176,17 @@ as well as [image pull
 policy](https://docs.openshift.org/latest/dev_guide/managing_images.html#image-pull-policy).
 
 WINNING! These few commands are the only ones you need to run to get a "vanilla"
-Docker image deployed on OpenShift Origin. This should work with any Docker image
+Docker image deployed on OpenShift. This should work with any Docker image
 that follows best practices, such as defining an EXPOSE port, not running as the
 *root user* or specific user name, and a single non-exiting CMD to execute on start.
 
-**Note:** It is important to understand that, for security reasons, OpenShift Origin
+**Note:** It is important to understand that, for security reasons, OpenShift 
 does not allow the deployment of Docker images that run as *root* by default.
 If you want or need to allow OpenShift users to deploy Docker images that do
 expect to run as root (or any specific user), a small configuration change is
 needed. You can learn more about the [Docker
 guidelines](https://docs.openshift.org/latest/creating_images/guidelines.html)
-for OpenShift Origin, or you can look at the section on [enabling images to run with
+for OpenShift, or you can look at the section on [enabling images to run with
 a USER in the
 dockerfile](https://docs.openshift.org/latest/admin_guide/manage_scc.html#enable-images-to-run-with-user-in-the-dockerfile).
 

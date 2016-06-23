@@ -2,7 +2,7 @@
 
 ####**Exercise: Using GitHub Web Hooks**
 
-OpenShift Origin supports receiving webhooks from remote code repositories when code
+OpenShift supports receiving webhooks from remote code repositories when code
 changes, including from GitHub and GitLab. When a notification is received, a new build
 will be triggered on OpenShift. This allows for automated pipeline of
 code/build/deploy.

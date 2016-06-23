@@ -4,7 +4,7 @@
 
 The first thing we want to do to ensure that our `oc` command line tools was
 installed and successfully added to our path is login to the OpenShift
-Enterprise 3.x environment that has been provided for this Roadshow session.  In
+environment that has been provided for this Roadshow session.  In
 order to login, we will use the `oc` command and then specify the server that we
 want to authenticate to.  Issue the following command:
 
@@ -46,7 +46,7 @@ password combination for your user account:
     Password: dev
 ````
 
-Once you have authenticated to the OpenShift Origin server, you will see the
+Once you have authenticated to the OpenShift server, you will see the
 following confirmation message:
 
 ````
@@ -59,7 +59,7 @@ Congratulations, you are now authenticated to the OpenShift server. The
 OpenShift master includes a built-in OAuth server. Developers and administrators
 obtain OAuth access tokens to authenticate themselves to the API. By default
 your authorization token will last for 24 hours. There is more information about
-the login command and its configuration in the [OpenShift Enterprise
+the login command and its configuration in the [OpenShift 
 Documentation](https://docs.openshift.org/latest/cli_reference/get_started_cli.html#basic-setup-and-login).
 
 
@@ -114,7 +114,7 @@ You should see output similar to the following:
 
 ###**The Web Console**
 
-OpenShift Origin ships with a web-based console that will allow users to
+OpenShift ships with a web-based console that will allow users to
 perform various tasks via a browser.  To get a feel for how the web console
 works, open your browser and go to the following URL:
 
@@ -129,7 +129,7 @@ The first screen you will see is the authentication screen.  Enter in the follow
 	Password: dev
 ````
 
-![OpenShift Origin Login Screen](images/v3login.png)
+![OpenShift Login Screen](images/v3login.png)
 
 After you have authenticated to the web console, you will be presented with a
 list of projects that your user has permission to work with. You will see

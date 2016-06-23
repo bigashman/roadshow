@@ -2,7 +2,7 @@
 
 ###**Command Line Interface**
 
-OpenShift Origin ships with a feature rich web console as well as command line tools
+OpenShift ships with a feature rich web console as well as command line tools
 to provide users with a nice interface to work with applications deployed to the
 platform.  The OpenShift tools are a single executable written in the Go
 programming language and is available for the following operating systems:

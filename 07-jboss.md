@@ -183,6 +183,6 @@ Verify your application is working by viewing the URL in a web browser.  You sho
 Wait a second!  Why are the baseball stadiums not showing up?  Well, that is
 because we haven't actually added a database to the application yet.  We will do
 that in the next lab. Congratulations on deploying your first application
-using S2I on the OpenShift Origin Platform!
+using S2I on the OpenShift Platform!
 
 **[End of Lab 7](/)**
