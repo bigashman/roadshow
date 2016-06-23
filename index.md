@@ -16,4 +16,3 @@
 10. **[Using Application Templates](10-templates.md.html)**
 11. **[Limiting application resource usage](11-quotas.md.html)**
 
-[OpenShift Concepts](presentations/openshift-concepts.pdf)
