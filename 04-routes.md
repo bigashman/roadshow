@@ -40,6 +40,7 @@ route "guestbook" exposed
 Verify the *Route* was created with the following command:
 
 ````
+$ oc get route
 NAME        HOST/PORT                                    PATH      SERVICE              TERMINATION   LABELS
 guestbook   guestbook-guestbook.apps.10.2.2.2.xip.io             guestbook:3000-tcp                 app=guestbook
 ````
