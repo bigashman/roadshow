@@ -35,7 +35,7 @@ Now we have access to the application template in our project.  As a side note, 
 Are you ready for the magic command?  Here it is:
 
 ````
-$ oc new-app mlbparks-wildfly --name=mlbparks -p GIT_URI=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks -p MAVEN_MIRROR_URL=http://nexus.ci.apps.10.2.2.2.xip.io/content/groups/public/
+$ oc new-app mlbparks-wildfly --name=mlbparks -p GIT_URI=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks.git -p MAVEN_MIRROR_URL=http://nexus.ci.svc.cluster.local:8081/content/groups/public
 ````
 
 You will see the following output:
@@ -45,9 +45,9 @@ You will see the following output:
      With parameters:
       APPLICATION_NAME=mlbparks
       APPLICATION_HOSTNAME=
-      GIT_URI=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks
+      GIT_URI=http://gitlab.apps.10.2.2.2.xip.io/dev/openshift3mlbparks.git
       GIT_REF=master
-      Maven mirror url=http://nexus.ci.apps.10.2.2.2.xip.io/content/groups/public/
+      Maven mirror url=http://nexus.ci.svc.cluster.local:8081/content/groups/public
       MONGODB_DATABASE=root
       MONGODB_NOPREALLOC=
       MONGODB_SMALLFILES=
