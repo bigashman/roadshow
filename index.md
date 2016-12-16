@@ -1,6 +1,8 @@
 ![Presentations](presentations/morning_overview.png)
 
-#**Lab Contents**#
+#Platform Standards#
+
+##General Information
 
 **[Lab Environment Overview](00-environment.md.html)**
 
